@@ -1,7 +1,7 @@
 """Score contracts and routing targets; run with unittest discovery.
 
-Routing targets intentionally fail until the router meets them. Small scripted
-drivers establish that each target is achievable under the actual engine rules.
+Small scripted drivers establish that each routing target is achievable under
+the actual engine rules, independently of the production routing heuristic.
 """
 
 import math
@@ -10,6 +10,11 @@ import unittest
 
 from ar_hackathon.api.routing import drive_unit_next_move
 from ar_hackathon.engine.game_engine import GameEngine
+from ar_hackathon.models.drive_unit import DriveUnit
+from ar_hackathon.models.edge import Edge
+from ar_hackathon.models.graph_state import GraphState
+from ar_hackathon.models.node import Node
+from ar_hackathon.models.pod import Pod
 from ar_hackathon.utils.routing_utils import is_valid_move
 
 
@@ -41,6 +46,36 @@ def reference_route(name, unit_id, state):
         moves = {0: {0: 2, 2: 3}, 1: {1: 0, 0: 4}}
         return moves[unit_id].get(unit.current_node)
     raise AssertionError(f'Unknown reference scenario: {name}')
+
+
+class LoadedDeliveryOrderTests(unittest.TestCase):
+    def loaded_state(self, destinations_and_entries):
+        unit = DriveUnit(0, 0, capacity=len(destinations_and_entries))
+        pods = []
+        for index, (destination, entry) in enumerate(destinations_and_entries):
+            pod = Pod(str(index), None, destination, entry)
+            pod.carried_by = unit.id
+            pods.append(pod)
+            unit.carrying.append(pod.id)
+        return GraphState(
+            current_time_step=100,
+            nodes=[Node(0, node_type='storage'),
+                   Node(1, node_type='station'), Node(2, node_type='station')],
+            edges=[Edge(0, 1, weight=1), Edge(0, 2, weight=2)],
+            drive_units=[unit], active_pods=pods,
+        )
+
+    def test_larger_batch_can_outweigh_nearest_station(self):
+        # Near first discounts three pods until time 103. Far first delivers
+        # those three at 101 and the single nearby pod at 104: higher total.
+        state = self.loaded_state([(1, 100), (2, 100), (2, 100), (2, 100)])
+        self.assertEqual(drive_unit_next_move(0, state), 2)
+
+    def test_fresh_pod_can_outweigh_nearer_old_cargo(self):
+        # The old pod has already lost most of its potential score. Delivering
+        # fresh cargo first preserves more total reward despite extra travel.
+        state = self.loaded_state([(1, 0), (2, 100)])
+        self.assertEqual(drive_unit_next_move(0, state), 2)
 
 
 class ScoringContractTests(unittest.TestCase):

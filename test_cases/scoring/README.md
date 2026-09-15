@@ -26,10 +26,17 @@ exceptions are retained as test failures instead of being hidden by engine waits
 These are achievable targets for these specific graphs, not general claims that
 nearest-first routing is always optimal.
 
-At addition, all four router tests fail against the existing algorithm. The
-existing all-scenarios delivery-count test also reports failures for the latter
-three scenarios. These failures are intentionally visible, not skipped or marked
-as expected failures. The algorithm and engine have not been changed.
+All four targets now pass after the routing optimization. The original router
+scored 56.66 on `far_destination_first` and zero on the other three; the updated
+router scores 82.85, 50.00, 48.04, and 96.10 respectively. Across all 48 scenarios,
+the score increased from 3366.20 to 3586.53, with no per-scenario score regression.
+The engine is unchanged.
+
+Two additional loaded-state tests check that delivery ordering accounts for
+batch size and pod age: a larger batch or fresher cargo can justify visiting a
+farther station first. The router is still a heuristic: future pod arrivals and
+the simulation deadline are absent from the callback state, and future robot
+traffic is not known. Higher fixture scores do not establish global optimality.
 
 ## Scoring contracts
 
