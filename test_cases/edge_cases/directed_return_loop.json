@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "max_time_steps": 80,
+    "description": "Return to storage using a one-way cycle for a later pod.",
+    "expected_delivered_pods": 2
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1,
+      "bidirectional": false
+    },
+    {
+      "from_node": 1,
+      "to_node": 2,
+      "weight": 1,
+      "bidirectional": false
+    },
+    {
+      "from_node": 2,
+      "to_node": 0,
+      "weight": 2,
+      "bidirectional": false
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 0,
+      "capacity": 1
+    }
+  ],
+  "pods": [
+    {
+      "id": "P1",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    },
+    {
+      "id": "P2",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 12
+    }
+  ]
+}

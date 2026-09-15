@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "max_time_steps": 80,
+    "description": "Three loaded robots share an aisle with two transit slots.",
+    "expected_delivered_pods": 3
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 3,
+      "capacity": 2
+    },
+    {
+      "from_node": 1,
+      "to_node": 2,
+      "weight": 1
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 0,
+      "capacity": 1
+    },
+    {
+      "id": 1,
+      "start_node": 0,
+      "capacity": 1
+    },
+    {
+      "id": 2,
+      "start_node": 0,
+      "capacity": 1
+    }
+  ],
+  "pods": [
+    {
+      "id": "0",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    },
+    {
+      "id": "1",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    },
+    {
+      "id": "2",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    }
+  ]
+}

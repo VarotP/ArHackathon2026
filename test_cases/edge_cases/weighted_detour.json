@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "max_time_steps": 80,
+    "description": "A three-edge route beats the expensive direct edge.",
+    "expected_delivered_pods": 1
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    },
+    {
+      "id": 3,
+      "type": "travel"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 2,
+      "weight": 12
+    },
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 3,
+      "weight": 1
+    },
+    {
+      "from_node": 3,
+      "to_node": 2,
+      "weight": 1
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 0,
+      "capacity": 1
+    }
+  ],
+  "pods": [
+    {
+      "id": "P",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    }
+  ]
+}

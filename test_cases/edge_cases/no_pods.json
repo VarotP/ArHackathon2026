@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "max_time_steps": 80,
+    "description": "No work: termination and zero score without division errors.",
+    "expected_delivered_pods": 0
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 2,
+      "weight": 1
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 1,
+      "capacity": 1
+    }
+  ],
+  "pods": []
+}

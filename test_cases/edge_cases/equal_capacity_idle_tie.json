@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "max_time_steps": 80,
+    "description": "Equal-capacity robots stage deterministically with separate spots.",
+    "expected_delivered_pods": 4
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    },
+    {
+      "id": 3,
+      "type": "travel"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 2,
+      "weight": 1
+    },
+    {
+      "from_node": 0,
+      "to_node": 3,
+      "weight": 1
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 8,
+      "start_node": 1,
+      "capacity": 2
+    },
+    {
+      "id": 2,
+      "start_node": 3,
+      "capacity": 2
+    }
+  ],
+  "pods": [
+    {
+      "id": "0",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 8
+    },
+    {
+      "id": "1",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 8
+    },
+    {
+      "id": "2",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 8
+    },
+    {
+      "id": "3",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 8
+    }
+  ]
+}

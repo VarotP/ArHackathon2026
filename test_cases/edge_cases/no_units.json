@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "max_time_steps": 8,
+    "description": "Pods cannot be delivered without robots; stop at time limit.",
+    "expected_delivered_pods": 0
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage"
+    },
+    {
+      "id": 1,
+      "type": "travel"
+    },
+    {
+      "id": 2,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 2,
+      "weight": 1
+    }
+  ],
+  "drive_units": [],
+  "pods": [
+    {
+      "id": "P",
+      "source_node": 0,
+      "destination_station": 2,
+      "entry_time": 0
+    }
+  ]
+}
