@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "description": "Two loaded robots block each other at capacity-1 nodes; a detour lets both deliver.",
+    "max_time_steps": 8,
+    "expected_delivered_pods": 2
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "storage",
+      "capacity": 1
+    },
+    {
+      "id": 1,
+      "type": "storage",
+      "capacity": 1
+    },
+    {
+      "id": 2,
+      "type": "travel"
+    },
+    {
+      "id": 3,
+      "type": "station"
+    },
+    {
+      "id": 4,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 3,
+      "weight": 1
+    },
+    {
+      "from_node": 0,
+      "to_node": 4,
+      "weight": 1
+    },
+    {
+      "from_node": 0,
+      "to_node": 2,
+      "weight": 2
+    },
+    {
+      "from_node": 2,
+      "to_node": 3,
+      "weight": 2
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 0,
+      "capacity": 1
+    },
+    {
+      "id": 1,
+      "start_node": 1,
+      "capacity": 1
+    }
+  ],
+  "pods": [
+    {
+      "id": "A",
+      "source_node": 0,
+      "destination_station": 3,
+      "entry_time": 0
+    },
+    {
+      "id": "B",
+      "source_node": 1,
+      "destination_station": 4,
+      "entry_time": 0
+    }
+  ]
+}

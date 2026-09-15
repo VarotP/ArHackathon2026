@@ -1,6 +1,8 @@
 # Routing edge cases
 
-These 30 scenarios extend the practice suite to 39 scenarios. They cover a broad
+These 30 scenarios, together with the six practice and three custom scenarios,
+formed the original 39-scenario suite. The nine scenarios in
+[`../scoring/`](../scoring/README.md) bring the full suite to 48. They cover a broad
 set of boundary conditions, not every possible graph or combination of events.
 All JSON files are runnable with the standard game runner.
 

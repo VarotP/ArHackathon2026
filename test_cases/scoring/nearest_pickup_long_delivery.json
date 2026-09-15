@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "description": "The nearest pickup cannot finish before the cutoff; the farther pickup can.",
+    "max_time_steps": 10,
+    "expected_delivered_pods": 1
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "type": "travel"
+    },
+    {
+      "id": 1,
+      "type": "storage"
+    },
+    {
+      "id": 2,
+      "type": "storage"
+    },
+    {
+      "id": 3,
+      "type": "station"
+    },
+    {
+      "id": 4,
+      "type": "station"
+    }
+  ],
+  "edges": [
+    {
+      "from_node": 0,
+      "to_node": 1,
+      "weight": 1
+    },
+    {
+      "from_node": 1,
+      "to_node": 3,
+      "weight": 30
+    },
+    {
+      "from_node": 0,
+      "to_node": 2,
+      "weight": 2
+    },
+    {
+      "from_node": 2,
+      "to_node": 4,
+      "weight": 1
+    }
+  ],
+  "drive_units": [
+    {
+      "id": 0,
+      "start_node": 0,
+      "capacity": 1
+    }
+  ],
+  "pods": [
+    {
+      "id": "A",
+      "source_node": 1,
+      "destination_station": 3,
+      "entry_time": 0
+    },
+    {
+      "id": "B",
+      "source_node": 2,
+      "destination_station": 4,
+      "entry_time": 0
+    }
+  ]
+}
